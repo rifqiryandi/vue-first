@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <router-link to="/" class="navbar-brand">bezKoder</router-link>
+      <div v-if="storage">
+        <div class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link to="/tutorials" class="nav-link">Tutorials</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/add" class="nav-link">Add</router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="processLogout" style="cursor: pointer;">Logout</a>
+          </li>
+        </div>
+      </div>
+      <div v-else>
+        <div class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">Test Login</router-link>
+          </li>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="container mt-3">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "app",
+  data() {
+    return {
+      storage: localStorage.getItem("data-user")
+    };
+  },
+  methods: {
+    processLogout() {
+      localStorage.clear()
+      // this.$forceUpdate();
+      window.location.href = 'login'
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    }
+  }
+};
+</script>
