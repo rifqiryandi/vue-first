@@ -66,9 +66,13 @@
       <div v-else>
         <br />
         <p>Please click on a Tutorial...</p>
-        <TableGeneral />
       </div>
     </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-6">
+        <TableGeneral />
+      </div>
   </div>
 </template>
 

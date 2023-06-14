@@ -1,40 +1,68 @@
 <template lang="">
   <div>
-    <table class="table">
+    <DataTable
+      :data="data"
+      :columns="columns"
+      class="display table table-striped table-bordered"
+      :option="{ responsive: true, autoWidth: false }"
+    >
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th>No</th>
+          <th>Nama</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+    </DataTable>
   </div>
 </template>
 <script>
+import TutorialDataService from "../services/TutorialDataService";
+
+import DataTable from "datatables.net-vue3";
+import DataTableLib from "datatables.net-bs5";
+import DataTablesCore from "datatables.net";
+import "datatables.net-responsive-bs5";
+DataTable.use(DataTablesCore);
+DataTable.use(DataTableLib);
+
 export default {
-  name: "tes-comp"
+  name: "tes-comp",
+  components: {
+    DataTable,
+  },
+  data() {
+    return {
+      data: null,
+      columns: [
+        {
+          data:null,
+          render:function(data,type,row,meta) {
+            return `${meta.row+1}`
+          }
+        },
+        {
+          data:'name'
+        }
+      ],
+    };
+  },
+  methods: {
+    retrieveTutorials() {
+      TutorialDataService.getAll()
+        .then((response) => {
+          this.data = response.data.data;
+          console.log(response.data.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+  mounted() {
+    this.retrieveTutorials();
+  },
 };
 </script>
-<style lang=""></style>
+<style>
+@import url('datatables.net-bs5');
+</style>
