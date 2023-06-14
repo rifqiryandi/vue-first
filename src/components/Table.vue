@@ -6,12 +6,7 @@
       class="display table table-striped table-bordered"
       :option="{ responsive: true, autoWidth: false }"
     >
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-        </tr>
-      </thead>
+     
     </DataTable>
   </div>
 </template>
@@ -35,12 +30,14 @@ export default {
       data: null,
       columns: [
         {
+          title:"NO",
           data:null,
           render:function(data,type,row,meta) {
             return `${meta.row+1}`
           }
         },
         {
+          title:"Nama",
           data:'name'
         }
       ],
