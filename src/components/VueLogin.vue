@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Nama"
-                            v-model="user.name">
+                            v-model="user.nama">
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ export default {
         return {
             user: {
                 nippos: null,
-                name: ""
+                nama: ""
             },
             loginIs: false,
             msg: "",
@@ -69,9 +69,10 @@ export default {
             localStorage.clear()
             TutorialDataService.get(data).then(response => {
                 var resData = response.data.data
-                if (resData.name == this.user.name) {
+                if (resData.name == this.user.nama) {
                     data.name = resData.name
                     localStorage.setItem("data-user", JSON.stringify(data))
+                    sessionStorage.setItem("data-user", JSON.stringify(data))
                     var userData = JSON.parse(localStorage.getItem("data-user"))
                     console.log(userData);
                     this.msg = "Berhasil"

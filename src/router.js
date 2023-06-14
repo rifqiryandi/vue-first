@@ -1,7 +1,9 @@
-import { createWebHistory, createRouter } from "vue-router";
+import {
+  createWebHistory,
+  createRouter
+} from "vue-router";
 
-const routes =  [
-  {
+const routes = [{
     path: "/",
     alias: "/tutorials",
     name: "tutorials",
@@ -21,7 +23,7 @@ const routes =  [
     path: "/login",
     name: "login",
     component: () => import("./components/VueLogin")
-  },
+  }
 ];
 
 const router = createRouter({
