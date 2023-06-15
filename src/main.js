@@ -4,6 +4,8 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import router from './router'
 import Vue3Storage from "vue3-storage";
+
+
 // Component
 import TableGeneral from './components/Table'
 
