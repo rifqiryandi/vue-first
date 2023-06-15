@@ -105,11 +105,13 @@
 
 <script>
 import TutorialDataService from './services/TutorialDataService';
+
+// import 'dotenv/config'
 export default {
   name: "app",
   data() {
     return {
-      storage: sessionStorage.getItem("data-user"),
+      storage: sessionStorage.getItem("access-token"),
       user: {
         nippos: null,
         password: ""
@@ -127,12 +129,12 @@ export default {
     },
     processLogin() {
       var data = {
-        nippos: this.user.nippos
+        nippos: this.user.nippos,
+        password: this.user.password
       }
-      localStorage.clear()
-      TutorialDataService.get(data).then(response => {
-        var resData = response.data.data
-        sessionStorage.setItem("data-user", JSON.stringify(resData))
+      TutorialDataService.Login(data).then(response => {
+        var resData = response.data
+        sessionStorage.setItem("access-token", JSON.stringify(resData.accessToken))
         window.location.href = 'tutorials'
 
         // var userData = JSON.parse(sessionStorage.getItem("data-user"))

@@ -1,33 +1,36 @@
 import http from "../http-common";
 
 class TutorialDataService {
+  Login(data) {
+    return http.withoutToken().post("/api/auth/signin", data);
+  }
   getAll() {
-    return http.post("/user/userListTes");
+    return http.withToken().post("/ayopatuh/user/userList");
   }
 
-  get(id) {
-    return http.post("/user/userProfileTes", id);
-  }
+  // get(id) {
+  //   return http.post("/ayopatuh/user/userProfileTes", id);
+  // }
 
-  create(data) {
-    return http.post("/user/userInsertTes", data);
-  }
+  // create(data) {
+  //   return http.post("/ayopatuh/user/userInsertTes", data);
+  // }
 
-  update(data) {
-    return http.post("user/userUpdateTes", data);
-  }
+  // update(data) {
+  //   return http.post("/ayopatuhuser/userUpdateTes", data);
+  // }
 
-  delete(id) {
-    return http.post("/user/userDeleteTes", id);
-  }
+  // delete(id) {
+  //   return http.post("/ayopatuh/user/userDeleteTes", id);
+  // }
 
-  deleteAll() {
-    return http.delete(`/tutorials`);
-  }
+  // deleteAll() {
+  //   return http.delete(`/ayopatuh/tutorials`);
+  // }
 
-  findByTitle(title) {
-    return http.get(`/tutorials?title=${title}`);
-  }
+  // findByTitle(title) {
+  //   return http.get(`/tutorials?title=${title}`);
+  // }
 }
 
 export default new TutorialDataService();
